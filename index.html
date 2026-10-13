@@ -17,9 +17,6 @@
   <div class="bg-gradient"></div>
   <div class="bg-dots"></div>
 
-  <!-- Capa de stickers flotantes -->
-  <div class="floating-layer" id="floatingLayer"></div>
-
   <!-- Barra superior con progreso -->
   <header class="topbar" id="topbar">
     <div class="progress-track" id="progressTrack">
@@ -30,421 +27,390 @@
   <!-- Mensaje flotante (para avisos) -->
   <div class="toast" id="toast"></div>
 
-  <!-- ===================================================== -->
-  <!-- PANTALLA 0: Bienvenida                               -->
-  <!-- ===================================================== -->
-  <main class="screen active" data-step="0" data-key="bienvenida">
-    <div class="card">
-      <div class="card-deco top-left">
-        <img src="assets/cinnamoroll.png" alt="" class="deco-img float-slow" />
-      </div>
-      <div class="card-deco top-right">
-        <img src="assets/pompompurin.png" alt="" class="deco-img float-fast" />
-      </div>
+  <!-- Envoltorio centrado -->
+  <div class="wrap">
 
-      <div class="avatar-wrap">
-        <img src="assets/gato-1.png" alt="" class="avatar" />
-        <span class="status-dot"></span>
-      </div>
-
-      <span class="badge">💌 Mensaje nuevo</span>
-
-      <h1 class="title-handwritten">¿Quieres salir conmigo?</h1>
-
-      <p class="subtitle">
-        Prometo que lo pasarás bonito ✨
-        <br />
-        <small>(el botón de "No" es un poco tímido...)</small>
-      </p>
-
-      <div class="btn-group">
-        <button class="btn btn-primary" id="btnYes">
-          <span>Sí, ¡acepto!</span>
-          <span class="btn-emoji">💖</span>
-        </button>
-        <button class="btn btn-ghost" id="btnNo">No 😢</button>
-      </div>
-
-      <p class="hint" id="hint"></p>
-
-      <p class="credit">Elaborado por Ing. Mario Delgado</p>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 1: Nombre                                   -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="1" data-key="nombre">
-    <div class="card">
-      <div class="card-deco top-left">
-        <img src="assets/hello-kitty.png" alt="" class="deco-img float-slow" />
-      </div>
-
-      <div class="screen-icon">
-        <img src="assets/gato-2.png" alt="" />
-      </div>
-
-      <h2 class="title-handwritten">Primero, ¿cómo te llamas?</h2>
-      <p class="subtitle">Así sé de quién es esta respuesta tan bonita 🥰</p>
-
-      <div class="field">
-        <input type="text" id="inputNombre" placeholder="Tu nombre" autocomplete="name" />
-      </div>
-
-      <button class="btn btn-primary btn-block" data-next="1" data-validate="inputNombre">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 2: Comida                                   -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="2" data-key="comida">
-    <div class="card">
-      <div class="card-deco top-right">
-        <img src="assets/pompompurin.png" alt="" class="deco-img float-fast" />
-      </div>
-
-      <div class="screen-icon">
-        <img src="assets/gato-3.png" alt="" />
-      </div>
-
-      <h2 class="title-handwritten">¿Qué se te antoja comer?</h2>
-      <p class="subtitle">Elige lo que más se te parezca 🍽️</p>
-
-      <div class="options-grid options-grid-compact" data-key="comida">
-        <button class="option-card" data-value="Pizza 🍕">
-          <span class="option-emoji">🍕</span>
-          <span class="option-label">Pizza</span>
-        </button>
-        <button class="option-card" data-value="Tacos 🌮">
-          <span class="option-emoji">🌮</span>
-          <span class="option-label">Tacos</span>
-        </button>
-        <button class="option-card" data-value="Hamburguesa 🍔">
-          <span class="option-emoji">🍔</span>
-          <span class="option-label">Hamburguesa</span>
-        </button>
-        <button class="option-card" data-value="Pasta 🍝">
-          <span class="option-emoji">🍝</span>
-          <span class="option-label">Pasta</span>
-        </button>
-        <button class="option-card" data-value="Postres 🍰">
-          <span class="option-emoji">🍰</span>
-          <span class="option-label">Postres</span>
-        </button>
-        <button class="option-card" data-value="Pollo frito 🍗">
-          <span class="option-emoji">🍗</span>
-          <span class="option-label">Pollo</span>
-        </button>
-        <button class="option-card" data-value="Ensalada 🥗">
-          <span class="option-emoji">🥗</span>
-          <span class="option-label">Ensalada</span>
-        </button>
-        <button class="option-card" data-value="Alitas 🍖">
-          <span class="option-emoji">🍖</span>
-          <span class="option-label">Alitas</span>
-        </button>
-        <button class="option-card option-card-otro" data-value="__OTRO__" data-otro-input="comidaOtra">
-          <span class="option-emoji">✨</span>
-          <span class="option-label">Otro</span>
-        </button>
-      </div>
-
-      <div class="field field-otro" id="fieldComidaOtra" hidden>
-        <input type="text" id="comidaOtra" placeholder="¿Qué se te antoja? 😋" />
-      </div>
-
-      <button class="btn btn-primary btn-block" data-next="2" data-validate="comida">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 3: Flores                                   -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="3" data-key="flores">
-    <div class="card">
-      <div class="card-deco top-left">
-        <img src="assets/flor.png" alt="" class="deco-img float-slow" />
-      </div>
-
-      <div class="screen-icon">
-        <img src="assets/gato-4.png" alt="" />
-      </div>
-
-      <h2 class="title-handwritten">¿Qué flores te gustan?</h2>
-      <p class="subtitle">Quiero llevarte las correctas 🌷</p>
-
-      <div class="options-grid options-grid-compact" data-key="flores">
-        <button class="option-card" data-value="Rosas 🌹">
-          <span class="option-emoji">🌹</span>
-          <span class="option-label">Rosas</span>
-        </button>
-        <button class="option-card" data-value="Girasoles 🌻">
-          <span class="option-emoji">🌻</span>
-          <span class="option-label">Girasoles</span>
-        </button>
-        <button class="option-card" data-value="Tulipanes 🌷">
-          <span class="option-emoji">🌷</span>
-          <span class="option-label">Tulipanes</span>
-        </button>
-        <button class="option-card" data-value="Margaritas 🌼">
-          <span class="option-emoji">🌼</span>
-          <span class="option-label">Margaritas</span>
-        </button>
-        <button class="option-card" data-value="Lavanda 💜">
-          <span class="option-emoji">💜</span>
-          <span class="option-label">Lavanda</span>
-        </button>
-        <button class="option-card" data-value="Peonías 🌸">
-          <span class="option-emoji">🌸</span>
-          <span class="option-label">Peonías</span>
-        </button>
-        <button class="option-card" data-value="Orquídeas 🪷">
-          <span class="option-emoji">🪷</span>
-          <span class="option-label">Orquídeas</span>
-        </button>
-        <button class="option-card" data-value="Claveles 🏵️">
-          <span class="option-emoji">🏵️</span>
-          <span class="option-label">Claveles</span>
-        </button>
-        <button class="option-card option-card-otro" data-value="__OTRO__" data-otro-input="floresOtra">
-          <span class="option-emoji">✨</span>
-          <span class="option-label">Otra</span>
-        </button>
-      </div>
-
-      <div class="field field-otro" id="fieldFloresOtra" hidden>
-        <input type="text" id="floresOtra" placeholder="¿Cuál más te gusta? 🌷" />
-      </div>
-
-      <button class="btn btn-primary btn-block" data-next="3" data-validate="flores">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 4: Plan                                     -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="4" data-key="plan">
-    <div class="card">
-      <div class="card-deco top-right">
-        <img src="assets/kuromi.png" alt="" class="deco-img float-fast" />
-      </div>
-
-      <div class="screen-icon">
-        <img src="assets/cinnamoroll.png" alt="" />
-      </div>
-
-      <h2 class="title-handwritten">¿Qué plan prefieres?</h2>
-      <p class="subtitle">Tú eliges, yo me adapto 🎬</p>
-
-      <div class="options-list options-list-compact" data-key="plan">
-        <button class="option-row" data-value="Cena 🌙">
-          <span class="option-emoji-lg">🌙</span>
-          <div class="option-text">
-            <strong>Cena</strong>
-            <small>Algo tranquilo por la noche</small>
-          </div>
-          <span class="option-check">✓</span>
-        </button>
-        <button class="option-row" data-value="Cine 🎬">
-          <span class="option-emoji-lg">🎬</span>
-          <div class="option-text">
-            <strong>Cine</strong>
-            <small>Película y palomitas</small>
-          </div>
-          <span class="option-check">✓</span>
-        </button>
-        <button class="option-row" data-value="Café y caminar ☕">
-          <span class="option-emoji-lg">☕</span>
-          <div class="option-text">
-            <strong>Café y caminar</strong>
-            <small>Plática sin prisa</small>
-          </div>
-          <span class="option-check">✓</span>
-        </button>
-        <button class="option-row" data-value="Sorpresa 🎁">
-          <span class="option-emoji-lg">🎁</span>
-          <div class="option-text">
-            <strong>Sorpresa</strong>
-            <small>Algo bonito, ya verás ✨</small>
-          </div>
-          <span class="option-check">✓</span>
-        </button>
-        <button class="option-row option-row-otro" data-value="__OTRO__" data-otro-input="planOtra">
-          <span class="option-emoji-lg">✨</span>
-          <div class="option-text">
-            <strong>Otro</strong>
-            <small>Dime qué plan tienes en mente</small>
-          </div>
-          <span class="option-check">✓</span>
-        </button>
-      </div>
-
-      <div class="field field-otro" id="fieldPlanOtra" hidden>
-        <input type="text" id="planOtra" placeholder="¿Qué plan tienes en mente? 💭" />
-      </div>
-
-      <button class="btn btn-primary btn-block" data-next="4" data-validate="plan">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 5: Fecha (calendario personalizado)         -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="5" data-key="fecha">
-    <div class="card">
-      <div class="card-deco top-left">
-        <img src="assets/estrella.png" alt="" class="deco-img float-slow" />
-      </div>
-
-      <div class="screen-icon">
-        <img src="assets/gato-1.png" alt="" />
-      </div>
-
-      <h2 class="title-handwritten">¿Qué día te queda bien?</h2>
-      <p class="subtitle">Elige con calma 📅</p>
-
-      <div class="calendar" id="calendar">
-        <div class="calendar-header">
-          <button type="button" class="cal-nav" id="calPrev" aria-label="Mes anterior">‹</button>
-          <div class="calendar-title" id="calendarTitle">Enero 2026</div>
-          <button type="button" class="cal-nav" id="calNext" aria-label="Mes siguiente">›</button>
+    <!-- ===================================================== -->
+    <!-- PANTALLA 0: Bienvenida                               -->
+    <!-- ===================================================== -->
+    <main class="screen active" data-step="0" data-key="bienvenida">
+      <div class="card">
+        <div class="avatar-wrap">
+          <img src="assets/imagen1.png" alt="" class="avatar" />
+          <span class="status-dot"></span>
         </div>
-        <div class="calendar-weekdays">
-          <span>Do</span>
-          <span>Lu</span>
-          <span>Ma</span>
-          <span>Mi</span>
-          <span>Ju</span>
-          <span>Vi</span>
-          <span>Sá</span>
+
+        <span class="badge">💌 Mensaje nuevo</span>
+
+        <h1 class="title-handwritten">¿Quieres salir conmigo?</h1>
+
+        <p class="subtitle">
+          Prometo que lo pasarás bonito ✨
+          <br />
+          <small>(el botón de "No" es un poco tímido...)</small>
+        </p>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" id="btnYes">
+            <span>Sí, ¡acepto!</span>
+            <span class="btn-emoji">💖</span>
+          </button>
+          <button class="btn btn-ghost" id="btnNo">No 😢</button>
         </div>
-        <div class="calendar-days" id="calendarDays"></div>
+
+        <p class="hint" id="hint"></p>
+
+        <p class="credit">Elaborado por Ing. Mario Delgado</p>
       </div>
+    </main>
 
-      <p class="selected-display" id="fechaSeleccionada">
-        <span class="muted">Aún no eliges un día</span>
-      </p>
+    <!-- ===================================================== -->
+    <!-- PANTALLA 1: Nombre                                   -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="1" data-key="nombre">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen2.png" alt="" />
+        </div>
 
-      <button class="btn btn-primary btn-block" data-next="5" data-validate="fecha">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
+        <h2 class="title-handwritten">Primero, ¿cómo te llamas?</h2>
+        <p class="subtitle">Quiero que me digas tu bonito nombre.</p>
 
-  <!-- ===================================================== -->
-  <!-- PANTALLA 6: Hora (selector personalizado)            -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="6" data-key="hora">
-    <div class="card">
-      <div class="card-deco top-right">
-        <img src="assets/nube.png" alt="" class="deco-img float-fast" />
+        <div class="field">
+          <input type="text" id="inputNombre" placeholder="Tu nombre" autocomplete="name" />
+        </div>
+
+        <button class="btn btn-primary btn-block" data-next="1" data-validate="inputNombre">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
       </div>
+    </main>
 
-      <div class="screen-icon">
-        <img src="assets/pompompurin.png" alt="" />
+    <!-- ===================================================== -->
+    <!-- PANTALLA 2: Comida                                   -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="2" data-key="comida">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen3.png" alt="" />
+        </div>
+
+        <h2 class="title-handwritten">¿Qué se te antoja comer?</h2>
+        <p class="subtitle">Con qué se te conquista el corazón.</p>
+
+        <div class="options-grid options-grid-compact" data-key="comida">
+          <button class="option-card" data-value="Pizza 🍕">
+            <span class="option-emoji">🍕</span>
+            <span class="option-label">Pizza</span>
+          </button>
+          <button class="option-card" data-value="Tacos 🌮">
+            <span class="option-emoji">🌮</span>
+            <span class="option-label">Tacos</span>
+          </button>
+          <button class="option-card" data-value="Hamburguesa 🍔">
+            <span class="option-emoji">🍔</span>
+            <span class="option-label">Hamburguesa</span>
+          </button>
+          <button class="option-card" data-value="Pasta 🍝">
+            <span class="option-emoji">🍝</span>
+            <span class="option-label">Pasta</span>
+          </button>
+          <button class="option-card" data-value="Postres 🍰">
+            <span class="option-emoji">🍰</span>
+            <span class="option-label">Postres</span>
+          </button>
+          <button class="option-card" data-value="Pollo frito 🍗">
+            <span class="option-emoji">🍗</span>
+            <span class="option-label">Pollo</span>
+          </button>
+          <button class="option-card" data-value="Ensalada 🥗">
+            <span class="option-emoji">🥗</span>
+            <span class="option-label">Ensalada</span>
+          </button>
+          <button class="option-card" data-value="Alitas 🍖">
+            <span class="option-emoji">🍖</span>
+            <span class="option-label">Alitas</span>
+          </button>
+          <button class="option-card option-card-otro" data-value="__OTRO__" data-otro-input="comidaOtra">
+            <span class="option-emoji">✨</span>
+            <span class="option-label">Otro</span>
+          </button>
+        </div>
+
+        <div class="field field-otro" id="fieldComidaOtra" hidden>
+          <input type="text" id="comidaOtra" placeholder="¿Qué se te antoja? 😋" />
+        </div>
+
+        <button class="btn btn-primary btn-block" data-next="2" data-validate="comida">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
       </div>
+    </main>
 
-      <h2 class="title-handwritten">¿A qué hora te recojo?</h2>
-      <p class="subtitle">Elige la hora perfecta ⏰</p>
+    <!-- ===================================================== -->
+    <!-- PANTALLA 3: Flores                                   -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="3" data-key="flores">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen4.png" alt="" />
+        </div>
 
-      <div class="time-picker">
-        <div class="time-columns">
-          <div class="time-col">
-            <div class="time-col-label">Hora</div>
-            <div class="time-list" id="hourList"></div>
+        <h2 class="title-handwritten">¿Qué flores te gustan?</h2>
+        <p class="subtitle">Quiero llevarte las correctas.</p>
+
+        <div class="options-grid options-grid-compact" data-key="flores">
+          <button class="option-card" data-value="Rosas 🌹">
+            <span class="option-emoji">🌹</span>
+            <span class="option-label">Rosas</span>
+          </button>
+          <button class="option-card" data-value="Girasoles 🌻">
+            <span class="option-emoji">🌻</span>
+            <span class="option-label">Girasoles</span>
+          </button>
+          <button class="option-card" data-value="Tulipanes 🌷">
+            <span class="option-emoji">🌷</span>
+            <span class="option-label">Tulipanes</span>
+          </button>
+          <button class="option-card" data-value="Margaritas 🌼">
+            <span class="option-emoji">🌼</span>
+            <span class="option-label">Margaritas</span>
+          </button>
+          <button class="option-card" data-value="Lavanda 💜">
+            <span class="option-emoji">💜</span>
+            <span class="option-label">Lavanda</span>
+          </button>
+          <button class="option-card" data-value="Peonías 🌸">
+            <span class="option-emoji">🌸</span>
+            <span class="option-label">Peonías</span>
+          </button>
+          <button class="option-card" data-value="Orquídeas 🪷">
+            <span class="option-emoji">🪷</span>
+            <span class="option-label">Orquídeas</span>
+          </button>
+          <button class="option-card" data-value="Claveles 🏵️">
+            <span class="option-emoji">🏵️</span>
+            <span class="option-label">Claveles</span>
+          </button>
+          <button class="option-card option-card-otro" data-value="__OTRO__" data-otro-input="floresOtra">
+            <span class="option-emoji">✨</span>
+            <span class="option-label">Otra</span>
+          </button>
+        </div>
+
+        <div class="field field-otro" id="fieldFloresOtra" hidden>
+          <input type="text" id="floresOtra" placeholder="¿Cuál más te gusta? 🌷" />
+        </div>
+
+        <button class="btn btn-primary btn-block" data-next="3" data-validate="flores">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- ===================================================== -->
+    <!-- PANTALLA 4: Plan                                     -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="4" data-key="plan">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen5.png" alt="" />
+        </div>
+
+        <h2 class="title-handwritten">¿Qué plan prefieres?</h2>
+        <p class="subtitle">Tú eliges, yo me adapto.</p>
+
+        <div class="options-list options-list-compact" data-key="plan">
+          <button class="option-row" data-value="Cena 🌙">
+            <span class="option-emoji-lg">🌙</span>
+            <div class="option-text">
+              <strong>Cena</strong>
+              <small>Algo tranquilo por la noche</small>
+            </div>
+            <span class="option-check">✓</span>
+          </button>
+          <button class="option-row" data-value="Cine 🎬">
+            <span class="option-emoji-lg">🎬</span>
+            <div class="option-text">
+              <strong>Cine</strong>
+              <small>Película y palomitas</small>
+            </div>
+            <span class="option-check">✓</span>
+          </button>
+          <button class="option-row" data-value="Café y caminar ☕">
+            <span class="option-emoji-lg">☕</span>
+            <div class="option-text">
+              <strong>Café y caminar</strong>
+              <small>Plática sin prisa</small>
+            </div>
+            <span class="option-check">✓</span>
+          </button>
+          <button class="option-row" data-value="Sorpresa 🎁">
+            <span class="option-emoji-lg">🎁</span>
+            <div class="option-text">
+              <strong>Sorpresa</strong>
+              <small>Algo bonito, ya verás ✨</small>
+            </div>
+            <span class="option-check">✓</span>
+          </button>
+          <button class="option-row option-row-otro" data-value="__OTRO__" data-otro-input="planOtra">
+            <span class="option-emoji-lg">✨</span>
+            <div class="option-text">
+              <strong>Otro</strong>
+              <small>Dime qué plan tienes en mente</small>
+            </div>
+            <span class="option-check">✓</span>
+          </button>
+        </div>
+
+        <div class="field field-otro" id="fieldPlanOtra" hidden>
+          <input type="text" id="planOtra" placeholder="¿Qué plan tienes en mente? 💭" />
+        </div>
+
+        <button class="btn btn-primary btn-block" data-next="4" data-validate="plan">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- ===================================================== -->
+    <!-- PANTALLA 5: Fecha                                    -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="5" data-key="fecha">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen6.png" alt="" />
+        </div>
+
+        <h2 class="title-handwritten">¿Qué día te queda bien?</h2>
+        <p class="subtitle">Elige con calma.</p>
+
+        <div class="calendar" id="calendar">
+          <div class="calendar-header">
+            <button type="button" class="cal-nav" id="calPrev" aria-label="Mes anterior">‹</button>
+            <div class="calendar-title" id="calendarTitle">Enero 2026</div>
+            <button type="button" class="cal-nav" id="calNext" aria-label="Mes siguiente">›</button>
           </div>
-          <div class="time-sep">:</div>
-          <div class="time-col">
-            <div class="time-col-label">Min</div>
-            <div class="time-list" id="minuteList"></div>
+          <div class="calendar-weekdays">
+            <span>Do</span>
+            <span>Lu</span>
+            <span>Ma</span>
+            <span>Mi</span>
+            <span>Ju</span>
+            <span>Vi</span>
+            <span>Sá</span>
           </div>
-          <div class="time-col time-col-ampm">
-            <div class="time-col-label">Período</div>
-            <div class="time-list" id="ampmList"></div>
+          <div class="calendar-days" id="calendarDays"></div>
+        </div>
+
+        <p class="selected-display" id="fechaSeleccionada">
+          <span class="muted">Aún no eliges un día</span>
+        </p>
+
+        <button class="btn btn-primary btn-block" data-next="5" data-validate="fecha">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- ===================================================== -->
+    <!-- PANTALLA 6: Hora                                     -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="6" data-key="hora">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen7.png" alt="" />
+        </div>
+
+        <h2 class="title-handwritten">¿A qué hora te gustaría salir?</h2>
+        <p class="subtitle">Elige la hora perfecta.</p>
+
+        <div class="time-picker">
+          <div class="time-columns">
+            <div class="time-col">
+              <div class="time-col-label">Hora</div>
+              <div class="time-list" id="hourList"></div>
+            </div>
+            <div class="time-sep">:</div>
+            <div class="time-col">
+              <div class="time-col-label">Min</div>
+              <div class="time-list" id="minuteList"></div>
+            </div>
+            <div class="time-col time-col-ampm">
+              <div class="time-col-label">Período</div>
+              <div class="time-list" id="ampmList"></div>
+            </div>
           </div>
         </div>
+
+        <p class="selected-display" id="horaSeleccionada">
+          <span class="muted">Aún no eliges una hora</span>
+        </p>
+
+        <button class="btn btn-primary btn-block" data-next="6" data-validate="hora">
+          <span>Continuar</span>
+          <span class="btn-emoji">→</span>
+        </button>
       </div>
+    </main>
 
-      <p class="selected-display" id="horaSeleccionada">
-        <span class="muted">Aún no eliges una hora</span>
-      </p>
+    <!-- ===================================================== -->
+    <!-- PANTALLA 7: Mensaje final                            -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="7" data-key="mensaje">
+      <div class="card">
+        <div class="screen-icon">
+          <img src="assets/imagen8.png" alt="" />
+        </div>
 
-      <button class="btn btn-primary btn-block" data-next="6" data-validate="hora">
-        <span>Continuar</span>
-        <span class="btn-emoji">→</span>
-      </button>
-    </div>
-  </main>
+        <h2 class="title-handwritten">¿Algo más que quieras decirme?</h2>
+        <p class="subtitle">
+          Cuéntame algo bonito, me encantaría leerte 💬
+          <br />
+          <small>Este campo es obligatorio</small>
+        </p>
 
-  <!-- ===================================================== -->
-  <!-- PANTALLA 7: Mensaje final (OBLIGATORIO)              -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="7" data-key="mensaje">
-    <div class="card">
-      <div class="card-deco top-right">
-        <img src="assets/nube.png" alt="" class="deco-img float-fast" />
+        <div class="field">
+          <textarea
+            id="inputMensaje"
+            rows="5"
+            placeholder="Escribe algo bonito aquí..."
+            required
+          ></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="btnEnviar">
+          <span>Enviar respuesta</span>
+        </button>
       </div>
+    </main>
 
-      <div class="screen-icon">
-        <img src="assets/pompompurin.png" alt="" />
+    <!-- ===================================================== -->
+    <!-- PANTALLA 8: Éxito                                    -->
+    <!-- ===================================================== -->
+    <main class="screen" data-step="8" data-key="exito">
+      <div class="card card-center">
+        <div class="success-anim">
+          <img src="assets/imagen9.png" alt="" />
+        </div>
+        <h1 class="title-handwritten">¡Enviado!</h1>
+        <p class="subtitle">
+          Ya me llegó al correo 💌
+          <br />
+          Te escribo prontito para coordinar todo ✨
+        </p>
+        <div class="confetti-emoji">🎉 💖 ✨ 🎀 💕</div>
+
+        <p class="credit">Elaborado por Ing. Mario Delgado</p>
       </div>
+    </main>
 
-      <h2 class="title-handwritten">¿Algo más que quieras decirme?</h2>
-      <p class="subtitle">
-        Cuéntame algo bonito, me encantaría leerte 💬
-        <br />
-        <small>Este campo es obligatorio ✨</small>
-      </p>
-
-      <div class="field">
-        <textarea
-          id="inputMensaje"
-          rows="4"
-          placeholder="Escribe algo bonito aquí... ✨ (obligatorio)"
-          required
-        ></textarea>
-      </div>
-
-      <button class="btn btn-primary btn-block" id="btnEnviar">
-        <span>Enviar respuesta</span>
-        <span class="btn-emoji">💌</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- ===================================================== -->
-  <!-- PANTALLA 8: Éxito                                    -->
-  <!-- ===================================================== -->
-  <main class="screen" data-step="8" data-key="exito">
-    <div class="card card-center">
-      <div class="success-anim">
-        <img src="assets/cinnamoroll.png" alt="Cinnamoroll" />
-      </div>
-      <h1 class="title-handwritten">¡Enviado!</h1>
-      <p class="subtitle">
-        Ya me llegó al correo 💌
-        <br />
-        Te escribo prontito para coordinar todo ✨
-      </p>
-      <div class="confetti-emoji">🎉 💖 ✨ 🎀 💕</div>
-
-      <p class="credit">Elaborado por Ing. Mario Delgado</p>
-    </div>
-  </main>
+  </div><!-- /.wrap -->
 
   <script src="script.js"></script>
 </body>

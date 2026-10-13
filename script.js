@@ -3,7 +3,7 @@
    ========================================================= */
 
 // 👇👇👇 PON AQUÍ TU CORREO REAL 👇👇👇
-const MI_CORREO = "tu_correo@ejemplo.com";
+const MI_CORREO = "mariojesusdh14200818@gmail.com";
 // 👆👆👆 PON AQUÍ TU CORREO REAL 👆👆👆
 
 // Endpoint AJAX de FormSubmit
@@ -32,13 +32,12 @@ const respuestas = {
 const pantallas     = Array.from(document.querySelectorAll('.screen'));
 const progressTrack = document.getElementById('progressTrack');
 const progressFill  = document.getElementById('progressFill');
-const floatingLayer = document.getElementById('floatingLayer');
 const toast         = document.getElementById('toast');
 
 let pasoActual = 0;
 
 /* =========================================================
-   TOAST — Mensajes flotantes de aviso
+   TOAST
    ========================================================= */
 let toastTimeout = null;
 function mostrarToast(mensaje, duracion = 2200) {
@@ -49,51 +48,6 @@ function mostrarToast(mensaje, duracion = 2200) {
     toast.classList.remove('visible');
   }, duracion);
 }
-
-/* =========================================================
-   STICKERS FLOTANTES
-   ========================================================= */
-const stickers = [
-  'assets/cinnamoroll.png',
-  'assets/pompompurin.png',
-  'assets/hello-kitty.png',
-  'assets/kuromi.png',
-  'assets/gato-1.png',
-  'assets/gato-2.png',
-  'assets/gato-3.png',
-  'assets/gato-4.png',
-  'assets/corazon.png',
-  'assets/estrella.png',
-  'assets/nube.png',
-  'assets/flor.png'
-];
-
-function spawnFloating() {
-  const img = document.createElement('img');
-  img.src = stickers[Math.floor(Math.random() * stickers.length)];
-  img.alt = '';
-  img.className = 'float-item';
-
-  const size = 28 + Math.random() * 34;
-  img.style.width = size + 'px';
-  img.style.height = 'auto';
-  img.style.left = Math.random() * 92 + 'vw';
-  img.style.top  = Math.random() * 92 + 'vh';
-  img.style.animationDuration = (5 + Math.random() * 5) + 's';
-  img.style.animationDelay    = (-Math.random() * 3) + 's';
-  img.style.opacity = (0.4 + Math.random() * 0.3).toFixed(2);
-
-  floatingLayer.appendChild(img);
-}
-
-for (let i = 0; i < 10; i++) spawnFloating();
-
-setInterval(() => {
-  if (floatingLayer.children.length > 16) {
-    floatingLayer.removeChild(floatingLayer.firstChild);
-  }
-  spawnFloating();
-}, 4000);
 
 /* =========================================================
    NAVEGACIÓN ENTRE PANTALLAS
@@ -110,7 +64,6 @@ function mostrarPaso(nuevoPaso) {
 
   pasoActual = nuevoPaso;
 
-  /* Control del botón "No" según la pantalla */
   if (nuevoPaso === 0) {
     btnNo.classList.remove('oculto');
   } else {
@@ -120,13 +73,11 @@ function mostrarPaso(nuevoPaso) {
   actualizarUI();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Autofocus en inputs de texto (excepto "Otra")
   const inputVisible = pantalla.querySelector('input[type="text"]:not([id*="Otra"])');
   if (inputVisible && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     setTimeout(() => inputVisible.focus(), 350);
   }
 
-  // Autofocus en el textarea del mensaje final
   const textareaVisible = pantalla.querySelector('textarea');
   if (textareaVisible && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     setTimeout(() => textareaVisible.focus(), 350);
@@ -141,12 +92,11 @@ function actualizarUI() {
 
   progressFill.style.width = progreso + '%';
 
-  // Ocultar barra de progreso solo en la bienvenida
   progressTrack.style.opacity = pasoActual === 0 ? '0' : '1';
 }
 
 /* =========================================================
-   BOTÓN "NO" TÍMIDO
+   BOTÓN "NO"
    ========================================================= */
 const btnYes = document.getElementById('btnYes');
 const btnNo  = document.getElementById('btnNo');
@@ -231,7 +181,6 @@ function saltarBotonNo() {
   btnNo.style.visibility = 'visible';
 }
 
-/* DESKTOP: huye cuando el mouse se acerca */
 const DISTANCIA_SEGURA = 90;
 
 document.addEventListener('mousemove', (e) => {
@@ -251,7 +200,6 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-/* MÓVIL / TABLET */
 btnNo.addEventListener('touchstart', (e) => {
   e.preventDefault();
   saltarBotonNo();
@@ -287,7 +235,7 @@ btnYes.addEventListener('click', () => {
 });
 
 /* =========================================================
-   SELECCIÓN DE OPCIONES (con soporte para "Otro")
+   SELECCIÓN DE OPCIONES
    ========================================================= */
 document.querySelectorAll('.options-grid, .options-list').forEach(group => {
   const key = group.dataset.key;
@@ -335,7 +283,7 @@ document.querySelectorAll('.options-grid, .options-list').forEach(group => {
 });
 
 /* =========================================================
-   BOTONES "CONTINUAR" con validación y mensajes
+   BOTONES "CONTINUAR"
    ========================================================= */
 document.querySelectorAll('[data-next]').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -353,7 +301,6 @@ function validarPaso(key) {
 
   const pantallaActual = pantallas[pasoActual];
 
-  // --- Nombre ---
   if (key === 'inputNombre') {
     const val = document.getElementById('inputNombre').value.trim();
     if (!val) {
@@ -364,7 +311,6 @@ function validarPaso(key) {
     respuestas.nombre = val;
   }
 
-  // --- Fecha ---
   if (key === 'fecha') {
     if (!respuestas.fechaISO) {
       const cal = document.getElementById('calendar');
@@ -372,12 +318,11 @@ function validarPaso(key) {
         cal.classList.add('shake');
         setTimeout(() => cal.classList.remove('shake'), 500);
       }
-      mostrarToast("📅 Elige un día para la cita");
+      mostrarToast("🌸 Elige un día para la cita");
       return false;
     }
   }
 
-  // --- Hora ---
   if (key === 'hora') {
     if (!respuestas.hora) {
       const tp = document.querySelector('.time-picker');
@@ -385,12 +330,11 @@ function validarPaso(key) {
         tp.classList.add('shake');
         setTimeout(() => tp.classList.remove('shake'), 500);
       }
-      mostrarToast("🕒 Elige una hora también");
+      mostrarToast("🌸 Elige una hora también");
       return false;
     }
   }
 
-  // --- Opciones (comida, flores, plan) ---
   if (key === 'comida' || key === 'flores' || key === 'plan') {
     if (!respuestas[key]) {
       const grupo = pantallaActual.querySelector(`[data-key="${key}"]`);
@@ -442,7 +386,7 @@ function marcarError(el) {
 }
 
 /* =========================================================
-   CALENDARIO PERSONALIZADO
+   CALENDARIO
    ========================================================= */
 const MESES = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -456,7 +400,6 @@ const calPrev        = document.getElementById('calPrev');
 const calNext        = document.getElementById('calNext');
 const fechaDisplay   = document.getElementById('fechaSeleccionada');
 
-// El mes visible empieza en el actual
 const hoy = new Date();
 hoy.setHours(0, 0, 0, 0);
 let mesVisible = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
@@ -466,17 +409,12 @@ function renderCalendario() {
   const month = mesVisible.getMonth();
 
   calendarTitle.textContent = `${MESES[month]} ${year}`;
-
   calendarDays.innerHTML = '';
 
-  // Primer día de la semana (0=Do ... 6=Sá)
   const primerDia = new Date(year, month, 1).getDay();
-  // Total de días del mes actual
   const diasMes   = new Date(year, month + 1, 0).getDate();
-  // Días del mes anterior para rellenar
   const diasPrevMes = new Date(year, month, 0).getDate();
 
-  // Relleno inicial con días del mes anterior (deshabilitados)
   for (let i = primerDia - 1; i >= 0; i--) {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -486,7 +424,6 @@ function renderCalendario() {
     calendarDays.appendChild(btn);
   }
 
-  // Días del mes actual
   for (let d = 1; d <= diasMes; d++) {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -496,17 +433,14 @@ function renderCalendario() {
     const fechaDia = new Date(year, month, d);
     fechaDia.setHours(0, 0, 0, 0);
 
-    // Marcar HOY
     if (fechaDia.getTime() === hoy.getTime()) {
       btn.classList.add('today');
     }
 
-    // Deshabilitar días pasados
     if (fechaDia < hoy) {
       btn.disabled = true;
     }
 
-    // Marcar el día seleccionado
     if (respuestas.fechaISO) {
       const seleccionada = new Date(respuestas.fechaISO + 'T00:00:00');
       if (seleccionada.getTime() === fechaDia.getTime()) {
@@ -515,27 +449,23 @@ function renderCalendario() {
     }
 
     btn.addEventListener('click', () => {
-      // Quitar la selección anterior
       calendarDays.querySelectorAll('.cal-day.seleccionado')
         .forEach(el => el.classList.remove('seleccionado'));
 
       btn.classList.add('seleccionado');
 
-      // Guardar
       const isoStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       respuestas.fechaISO = isoStr;
 
-      // Formato bonito
       const diaSemana = DIAS_CORTOS[fechaDia.getDay()];
       respuestas.fecha = `${diaSemana} ${d} de ${MESES[month]} de ${year}`;
 
-      fechaDisplay.innerHTML = `📅 <strong>${respuestas.fecha}</strong>`;
+      fechaDisplay.innerHTML = `<strong>${respuestas.fecha}</strong>`;
     });
 
     calendarDays.appendChild(btn);
   }
 
-  // Relleno final con días del mes siguiente (deshabilitados)
   const celdasTotales = primerDia + diasMes;
   const celdasRestantes = (7 - (celdasTotales % 7)) % 7;
   for (let i = 1; i <= celdasRestantes; i++) {
@@ -547,7 +477,6 @@ function renderCalendario() {
     calendarDays.appendChild(btn);
   }
 
-  // Deshabilitar el botón "prev" si estamos en el mes actual
   const mesActual = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
   calPrev.disabled = mesVisible.getTime() <= mesActual.getTime();
   calPrev.style.opacity = calPrev.disabled ? 0.35 : 1;
@@ -564,15 +493,14 @@ calNext.addEventListener('click', () => {
   renderCalendario();
 });
 
-// Render inicial
 renderCalendario();
 
 /* =========================================================
-   SELECTOR DE HORA PERSONALIZADO
+   SELECTOR DE HORA
    ========================================================= */
-const hourList   = document.getElementById('hourList');
-const minuteList = document.getElementById('minuteList');
-const ampmList   = document.getElementById('ampmList');
+const hourList    = document.getElementById('hourList');
+const minuteList  = document.getElementById('minuteList');
+const ampmList    = document.getElementById('ampmList');
 const horaDisplay = document.getElementById('horaSeleccionada');
 
 let horaTemp  = null;
@@ -581,7 +509,6 @@ let ampmTemp  = null;
 
 function renderHora() {
   hourList.innerHTML = '';
-  // Horas 1-12
   for (let h = 1; h <= 12; h++) {
     const item = document.createElement('div');
     item.className = 'time-item';
@@ -594,7 +521,6 @@ function renderHora() {
       horaTemp = h;
       hourList.querySelectorAll('.time-item').forEach(x => x.classList.remove('selected'));
       item.classList.add('selected');
-      // Centrar visualmente
       item.scrollIntoView({ block: 'center', behavior: 'smooth' });
       actualizarHora();
     });
@@ -603,7 +529,6 @@ function renderHora() {
   }
 
   minuteList.innerHTML = '';
-  // Minutos: 00, 05, 10, ... 55
   for (let m = 0; m < 60; m += 5) {
     const item = document.createElement('div');
     item.className = 'time-item';
@@ -648,15 +573,14 @@ function actualizarHora() {
     const hStr = String(horaTemp).padStart(2, '0');
     const mStr = String(minTemp).padStart(2, '0');
     respuestas.hora = `${hStr}:${mStr} ${ampmTemp}`;
-    horaDisplay.innerHTML = `⏰ <strong>${respuestas.hora}</strong>`;
+    horaDisplay.innerHTML = `<strong>${respuestas.hora}</strong>`;
   }
 }
 
-// Render inicial del selector de hora
 renderHora();
 
 /* =========================================================
-   GUARDAR MENSAJE FINAL — obligatorio
+   MENSAJE FINAL
    ========================================================= */
 const inputMensaje = document.getElementById('inputMensaje');
 inputMensaje.addEventListener('input', () => {
@@ -664,12 +588,11 @@ inputMensaje.addEventListener('input', () => {
 });
 
 /* =========================================================
-   ENVÍO FINAL CON FORMSUBMIT (AJAX)
+   ENVÍO FINAL
    ========================================================= */
 const btnEnviar = document.getElementById('btnEnviar');
 
 btnEnviar.addEventListener('click', async () => {
-  // ✅ VALIDACIÓN: mensaje obligatorio
   const texto = inputMensaje.value.trim();
   if (!texto) {
     marcarError(inputMensaje);
@@ -782,7 +705,7 @@ async function lanzarConfetiFuerte() {
 }
 
 /* =========================================================
-   SINCRONIZAR INPUTS "OTRO"
+   INPUTS "OTRO"
    ========================================================= */
 const comidaOtra = document.getElementById('comidaOtra');
 if (comidaOtra) {
