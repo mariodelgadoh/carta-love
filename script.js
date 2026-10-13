@@ -588,7 +588,7 @@ inputMensaje.addEventListener('input', () => {
 });
 
 /* =========================================================
-   ENVÍO FINAL
+   ENVÍO FINAL — CORREGIDO
    ========================================================= */
 const btnEnviar = document.getElementById('btnEnviar');
 
@@ -603,10 +603,19 @@ btnEnviar.addEventListener('click', async () => {
   respuestas.mensaje = texto;
 
   btnEnviar.disabled = true;
+
+  // ✅ DEFENSIVO: guardamos los spans, si no existen, usamos el botón completo
   const spanTexto = btnEnviar.querySelector('span');
   const spanEmoji = btnEnviar.querySelector('.btn-emoji');
-  spanTexto.textContent = 'Enviando...';
-  spanEmoji.textContent = '⏳';
+
+  // ✅ Ya NO mostramos el emoji de reloj (⏳) — solo cambiamos el texto
+  if (spanTexto) {
+    spanTexto.textContent = 'Enviando...';
+  } else {
+    btnEnviar.textContent = 'Enviando...';
+  }
+
+  // Dejamos el emoji del corazón 💌 tal cual estaba (no lo tocamos)
 
   const comidaFinal = respuestas.comida === '__OTRO__'
     ? (respuestas.comidaOtra || '(sin especificar)')
@@ -654,8 +663,13 @@ btnEnviar.addEventListener('click', async () => {
     console.error('Error al enviar:', error);
     mostrarToast("😢 Hubo un error, intenta de nuevo", 3000);
     btnEnviar.disabled = false;
-    spanTexto.textContent = 'Enviar respuesta';
-    spanEmoji.textContent = '💌';
+
+    if (spanTexto) {
+      spanTexto.textContent = 'Enviar respuesta';
+    } else {
+      btnEnviar.textContent = 'Enviar respuesta';
+    }
+    // Dejamos el emoji del corazón 💌 tal cual
   }
 });
 
